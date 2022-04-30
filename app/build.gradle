@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.gms.google-services'
+// Apply the Crashlytics Gradle plugin
+apply plugin: 'com.google.firebase.crashlytics'
 ext {
     supportLibraryVersion = '1.0.0'
 }
@@ -9,15 +11,19 @@ android {
     buildToolsVersion "28.0.3"
 
     defaultConfig {
-        applicationId "com.bluetooth.communicatorexample"
+        applicationId "com.moutamid.bluetoothapp"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -41,5 +47,22 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // FIREBASE MUST LIBRARY
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+
+    //FIREBASE GOOGLE SIGN IN AUTH
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
+    //FIREBASE REALTIME DATABASE
+    implementation 'com.google.firebase:firebase-database'
+
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'com.fxn769:stash:1.3.2'
 
 }
